@@ -102,3 +102,10 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+cat_timestamp
+maoba_crawler.py
+
+shuang11_crawler.py
+timestamp
+.idea
