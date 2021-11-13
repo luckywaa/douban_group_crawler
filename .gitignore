@@ -109,3 +109,6 @@ maoba_crawler.py
 shuang11_crawler.py
 timestamp
 .idea
+
+*.swp
+*.swo
