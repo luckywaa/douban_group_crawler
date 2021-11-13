@@ -1,0 +1,22 @@
+# -*- coding: UTF-8 -*-
+
+import crawler2
+
+if __name__ == '__main__':
+    keywords = list()
+    keywords.append('【开车】')
+    keywords.append('[开车]')
+
+    bots = list()
+    bots.append('http://wxpusher.zjiecode.com/api/send/message')
+
+    craw = crawler2.SpiderMain('https://www.douban.com/group/656297/discussion', 1)
+
+
+
+    craw.monitor_douban(
+        'cat',
+        keywords,
+        bots
+    )
+

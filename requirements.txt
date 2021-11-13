@@ -1,21 +1,6 @@
-# This file may be used to create an environment using:
-# $ conda create --name <env> --file <this file>
-# platform: win-64
-ca-certificates=2019.8.28=0
-certifi=2019.9.11=py37_0
-feedparser=5.2.1=py37_1
-krb5=1.16.1=hc04afaa_7
-libcurl=7.65.3=h2a8f88b_0
-libssh2=1.8.2=h7a1dbc1_0
-openssl=1.1.1d=he774522_2
-pip=19.2.3=py37_0
-pycurl=7.43.0.3=py37h7a1dbc1_0
-python=3.7.4=h5263a28_0
-setuptools=41.4.0=py37_0
-sqlite=3.30.0=he774522_0
-tk=8.6.8=hfa6e2cd_0
-vc=14.1=h0510ff6_4
-vs2015_runtime=14.16.27012=hf0eaf9b_0
-wheel=0.33.6=py37_0
-wincertstore=0.2=py37_0
-zlib=1.2.11=h62dcd97_3
+beautifulsoup4==4.10.0
+feedparser==6.0.8
+Flask==2.0.2
+pycurl==7.44.1
+requests==2.26.0
+

@@ -21,16 +21,17 @@ def write_message(message, bot_url):
     c.close()
 
 
-def monitor_douban(root_url, group_name, keywords, send_message_bots):
+if __name__ == '__main__':
+    root_url = 'https://www.douban.com/feed/group/656297/discussion'
+    # root_url = 'c.xml'
+    # print('main begin')
+    # obj_spider = SpiderMain()
+    # obj_spider.craw(root_url)
     while True:
         try:
-            last_time = ''
-            try:
-                f = open(group_name+'_timestamp')
-                last_time = f.read()
-                f.close()
-            except Exception:
-                last_time = '0.0'
+            f = open('timestamp')
+            last_time = f.read()
+            f.close()
 
             last_time = float(last_time)
             d = feedparser.parse(root_url)
@@ -42,7 +43,7 @@ def monitor_douban(root_url, group_name, keywords, send_message_bots):
             open_time_str = time.strftime('%Y-%m-%d %H:%M:%S', open_time_str)
             print('监控时间:' + open_time_str)
 
-            f = open(group_name+'_timestamp', 'w')
+            f = open('timestamp', 'w')
             f.write(str(feed_time))
             f.close()
 
@@ -50,16 +51,8 @@ def monitor_douban(root_url, group_name, keywords, send_message_bots):
             if feed_time != last_time:
                 for entry in d.entries:
                     try:
-                        title = str(entry.title)
-                        title = title[0:str(title).rindex('(')]
-                        match_keyword = False
-                        for keyword in keywords:
-                            if title.startswith(keyword):
-                                match_keyword = True
-                                break
-
-
-                        if not match_keyword:
+                        title = entry.title[0: -12]
+                        if not title.startswith('【开车】') and not title.startswith('[开车]'):
                             continue
 
                         structed_time = entry.published_parsed
@@ -77,9 +70,8 @@ def monitor_douban(root_url, group_name, keywords, send_message_bots):
                 if (len(res) == 0):
                     print('本次无开车数据')
                 for message in reversed(res):
-                    for bot in send_message_bots:
-                        write_message(message, bot)
-
+                    write_message(message,'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=99e2a51d-16fc-48da-ad0e-f095c3accea8')
+                    write_message(message,'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=6423fdf6-043c-46e3-a85e-8bee92e58524')
                     print(message)
                     if len(res) > 20:
                         time.sleep(3)
@@ -88,5 +80,4 @@ def monitor_douban(root_url, group_name, keywords, send_message_bots):
         except Exception:
             pass
         time.sleep(120)
-
 
